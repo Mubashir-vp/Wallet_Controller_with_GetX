@@ -26,16 +26,6 @@ final screens = [
 
 class _HomeState extends State<Home> {
   var currentIndex = 0;
-  // Route _createRoute({required Widget child}) {
-  //   return PageRouteBuilder(
-  //       transitionDuration: Duration(seconds: 1),
-  //       pageBuilder: (context, animation, secondaryAnimation) => child,
-  //       transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-  //           ScaleTransition(
-  //             scale: animation,
-  //             child: child,
-  //           ));
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -72,9 +62,11 @@ class _HomeState extends State<Home> {
             BottomNavigationBarItem(
                 icon: Padding(
                   padding: EdgeInsets.only(right: 300.0, left: 30),
-                  child: FaIcon(FontAwesomeIcons.home),
+                  child: FaIcon(
+                    FontAwesomeIcons.home,
+                  ),
                 ),
-                label: "add"),
+                label: "Home"),
             BottomNavigationBarItem(
               icon: Padding(
                 padding: EdgeInsets.only(right: 260, left: 2),
@@ -82,7 +74,7 @@ class _HomeState extends State<Home> {
                   FontAwesomeIcons.chartBar,
                 ),
               ),
-              label: "add",
+              label: "OverView",
             ),
             BottomNavigationBarItem(
               icon: Padding(
@@ -91,13 +83,13 @@ class _HomeState extends State<Home> {
                   FontAwesomeIcons.listUl,
                 ),
               ),
-              label: "add",
+              label: "Category",
             ),
             BottomNavigationBarItem(
               icon: FaIcon(
                 FontAwesomeIcons.cog,
               ),
-              label: "add",
+              label: "Settings",
             )
           ],
         ),
