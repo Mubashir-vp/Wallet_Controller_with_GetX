@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>StringsTable</key>
+	<string>Root</string>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSRadioGroupSpecifier</string>
+			<key>Titles</key>
+			<array>
+				<string>esc</string>
+				<string>both ⌘ keys</string>
+                <string>⌃ ⌥</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<array>
+                    <integer>41</integer>    <!-- Escape -->
+                </array>
+				<array>
+                    <integer>227</integer> <!-- Left Command -->
+                    <integer>231</integer> <!-- Right Command -->
+                </array>
+                <array>
+                    <integer>224</integer> <!-- Left Control -->
+                    <integer>226</integer> <!-- Left Option -->
+                    <integer>65535</integer> <!-- SimHIDCaptureManagerUnifyLeftRightModifierKeys -->
+                </array>
+			</array>
+			<key>Title</key>
+			<string>Stop capture shortcut</string>
+			<key>Key</key>
+			<string>CaptureEscapeKeyCodes</string>
+			<key>DefaultValue</key>
+			<array>
+                <integer>41</integer>
+            </array>
+		</dict>
+        <dict>
+            <key>Type</key>
+            <string>PSGroupSpecifier</string>
+            <key>Title</key>
+            <string>Simulator lifetime</string>
+        </dict>
+        <dict>
+            <key>Type</key>
+            <string>PSToggleSwitchSpecifier</string>
+            <key>Title</key>
+            <string>When Simulator starts boot the most recently used simulator</string>
+            <key>Key</key>
+            <string>StartLastDeviceOnLaunch</string>
+            <key>DefaultValue</key>
+            <true/>
+        </dict>
+        <dict>
+            <key>Type</key>
+            <string>PSToggleSwitchSpecifier</string>
+            <key>Title</key>
+            <string>When closing a simulator's window leave it running</string>
+            <key>Key</key>
+            <string>DetachOnWindowClose</string>
+            <key>DefaultValue</key>
+            <false/>
+        </dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>When quitting leave simulators running</string>
+			<key>Key</key>
+			<string>DetachOnAppQuit</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Visual indicators</string>
+		</dict>
+        <dict>
+            <key>Type</key>
+            <string>PSToggleSwitchSpecifier</string>
+            <key>Title</key>
+            <string>Show single touches</string>
+            <key>Key</key>
+            <string>ShowSingleTouches</string>
+            <key>DefaultValue</key>
+            <false/>
+        </dict>
+        <dict>
+            <key>Type</key>
+            <string>PSToggleSwitchSpecifier</string>
+            <key>Title</key>
+            <string>Show pinch gestures</string>
+            <key>Key</key>
+            <string>ShowPinches</string>
+            <key>DefaultValue</key>
+            <false/>
+        </dict>
+        <dict>
+            <key>Type</key>
+            <string>PSToggleSwitchSpecifier</string>
+            <key>Title</key>
+            <string>Show device mask in screenshots</string>
+            <key>Key</key>
+            <string>ScreenShotUseMask</string>
+            <key>DefaultValue</key>
+            <false/>
+        </dict>
+	</array>
+</dict>
+</plist>
