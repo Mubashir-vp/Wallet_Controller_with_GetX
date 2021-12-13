@@ -43,7 +43,7 @@ class _NewCategoriesState extends State<NewCategories> {
         return Padding(
           padding:
               const EdgeInsets.only(left: 6.0, right: 6, bottom: 0, top: 0),
-          child: Container(
+          child: SizedBox(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height / 10,
             child: Row(
@@ -333,7 +333,8 @@ class _NewCategoriesState extends State<NewCategories> {
                                           return "This Field Is Required";
                                         } else if (value.length >= 20) {
                                           return "Enter a correct category";
-                                        } else if (value[0] == "") {
+                                        }
+                                        if (value[0] == " ") {
                                           return "Enter a correct category";
                                         } else {
                                           return null;
@@ -399,7 +400,10 @@ class _NewCategoriesState extends State<NewCategories> {
                                             backgroundColor:
                                                 MaterialStateProperty.all(
                                                     obj.yellow)),
-                                        onPressed: () => Navigator.pop(context),
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                          categorycontroller.clear();
+                                        },
                                         child: Text(
                                           "Cancel",
                                           style: TextStyle(
@@ -729,7 +733,9 @@ class _NewCategoriesState extends State<NewCategories> {
                         ),
                       ),
 
-            const Divider(),
+            Divider(
+              color: obj.Primarywhite,
+            ),
 
             keys.isNotEmpty && income == true
                 ? Expanded(
@@ -772,7 +778,7 @@ class _NewCategoriesState extends State<NewCategories> {
                                 ),
                               );
                             } else {
-                              return Center(child: listView(id: all));
+                              return listView(id: all);
                             }
                           }),
                     ),
@@ -820,7 +826,7 @@ class _NewCategoriesState extends State<NewCategories> {
                                     ),
                                   );
                                 } else {
-                                  return Center(child: listView(id: all1));
+                                  return listView(id: all1);
                                 }
                               }),
                         ),

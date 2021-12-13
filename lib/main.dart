@@ -19,8 +19,8 @@ final FlutterLocalNotificationsPlugin notification =
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // SystemChrome.setPreferredOrientations(
-  //     [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   Directory path = await getApplicationDocumentsDirectory();
   Hive.init(path.path);
   Hive.registerAdapter(ModelAdapter());

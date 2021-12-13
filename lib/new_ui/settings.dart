@@ -20,7 +20,7 @@ class _settingsState extends State<settings> {
   static const IS_ALARMON = 'alarmon';
   TimeOfDay? shardAlarm;
 
-  bool? isSwitched;
+  bool isSwitched = false;
   bool tileShow = false;
 
   Future<void> checkButtonSwitched() async {
