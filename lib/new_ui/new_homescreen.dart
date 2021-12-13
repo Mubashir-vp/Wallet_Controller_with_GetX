@@ -248,20 +248,24 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                           borderRadius: BorderRadius.circular(8)),
                       child: Column(
                         children: [
-                          Text(
-                            formattedDate,
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: obj.black,
-                              fontFamily: 'Poppins',
+                          Expanded(
+                            child: Text(
+                              formattedDate,
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: obj.black,
+                                fontFamily: 'Poppins',
+                              ),
                             ),
                           ),
-                          Text(
-                            formattedDate1,
-                            style: TextStyle(
-                              fontSize: 10,
-                              color: obj.black,
-                              fontFamily: 'Poppins',
+                          Expanded(
+                            child: Text(
+                              formattedDate1,
+                              style: TextStyle(
+                                fontSize: 10,
+                                color: obj.black,
+                                fontFamily: 'Poppins',
+                              ),
                             ),
                           ),
                         ],
@@ -438,7 +442,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
             //TotalTransactionCard****
 
             Container(
-              height: MediaQuery.of(context).size.height / 6,
+              height: MediaQuery.of(context).size.height / 5.4,
               width: MediaQuery.of(context).size.width / 1.2,
               margin: const EdgeInsets.only(
                 left: 20,
@@ -981,33 +985,40 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                                                     right: 16,
                                                     top: 28,
                                                     bottom: 0),
-                                                child: Container(
-                                                  width: 50,
-                                                  height: 50,
-                                                  decoration: BoxDecoration(
-                                                      color: obj.Primarywhite,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8)),
-                                                  child: Column(
-                                                    children: [
-                                                      Text(
-                                                        formattedDate,
-                                                        style: TextStyle(
-                                                          fontSize: 20,
-                                                          color: obj.black,
-                                                          fontFamily: 'Poppins',
+                                                child: Expanded(
+                                                  child: Container(
+                                                    width: 50,
+                                                    decoration: BoxDecoration(
+                                                        color: obj.Primarywhite,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8)),
+                                                    child: Column(
+                                                      children: [
+                                                        Expanded(
+                                                          child: Text(
+                                                            formattedDate,
+                                                            style: TextStyle(
+                                                              fontSize: 20,
+                                                              color: obj.black,
+                                                              fontFamily:
+                                                                  'Poppins',
+                                                            ),
+                                                          ),
                                                         ),
-                                                      ),
-                                                      Text(
-                                                        formattedDate1,
-                                                        style: TextStyle(
-                                                          fontSize: 10,
-                                                          color: obj.black,
-                                                          fontFamily: 'Poppins',
+                                                        Expanded(
+                                                          child: Text(
+                                                            formattedDate1,
+                                                            style: TextStyle(
+                                                              fontSize: 10,
+                                                              color: obj.black,
+                                                              fontFamily:
+                                                                  'Poppins',
+                                                            ),
+                                                          ),
                                                         ),
-                                                      ),
-                                                    ],
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               ),
@@ -1022,7 +1033,6 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                                                   width: 180,
                                                   margin: const EdgeInsets.only(
                                                       left: 1, right: 1),
-                                                  // color: Colors.red,
                                                   child: Column(
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment

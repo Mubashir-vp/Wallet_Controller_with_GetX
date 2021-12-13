@@ -267,45 +267,42 @@ Map<String, double> jjjj(
 
 Widget piechart(
     {required Map<String, double> val, required MaterialColor color}) {
-  return Padding(
-    padding: const EdgeInsets.all(20.0),
-    child: PieChart(
-      dataMap: val,
-      ringStrokeWidth: 90,
-      colorList: [
-        HexColor("#2f4b7c"),
-        HexColor("#665191"),
-        HexColor("a05195"),
-        HexColor("#d45087"),
-        HexColor("#f95d6a"),
-        HexColor("#ff7c43"),
-        HexColor("#ffa600"),
-        HexColor("#003f5c"),
-        color,
-      ],
-      chartRadius: 70,
-      animationDuration: Duration(milliseconds: 1000),
-      chartType: ChartType.ring,
-      legendOptions: LegendOptions(
-          legendPosition: LegendPosition.right,
-          showLegendsInRow: false,
-          showLegends: true,
-          legendTextStyle: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontFamily: "Poppins",
-              color: obj.black),
-          legendShape: BoxShape.circle),
-      chartValuesOptions: ChartValuesOptions(
-        chartValueStyle: defaultChartValueStyle.copyWith(
-          color: Colors.blueGrey[900]!.withOpacity(0.9),
-        ),
-        showChartValueBackground: true,
-        showChartValues: true,
-        showChartValuesInPercentage: false,
-        showChartValuesOutside: true,
-        decimalPlaces: 0,
-        chartValueBackgroundColor: Colors.grey[200],
+  return PieChart(
+    dataMap: val,
+    ringStrokeWidth: 90,
+    colorList: [
+      HexColor("#2f4b7c"),
+      HexColor("#665191"),
+      HexColor("a05195"),
+      HexColor("#d45087"),
+      HexColor("#f95d6a"),
+      HexColor("#ff7c43"),
+      HexColor("#ffa600"),
+      HexColor("#003f5c"),
+      color,
+    ],
+    chartRadius: 70,
+    animationDuration: Duration(milliseconds: 1000),
+    chartType: ChartType.ring,
+    legendOptions: LegendOptions(
+        legendPosition: LegendPosition.right,
+        showLegendsInRow: false,
+        showLegends: true,
+        legendTextStyle: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontFamily: "Poppins",
+            color: obj.black),
+        legendShape: BoxShape.circle),
+    chartValuesOptions: ChartValuesOptions(
+      chartValueStyle: defaultChartValueStyle.copyWith(
+        color: Colors.blueGrey[900]!.withOpacity(0.9),
       ),
+      showChartValueBackground: true,
+      showChartValues: true,
+      showChartValuesInPercentage: false,
+      showChartValuesOutside: true,
+      decimalPlaces: 0,
+      chartValueBackgroundColor: Colors.grey[200],
     ),
   );
 }

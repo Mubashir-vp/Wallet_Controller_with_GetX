@@ -400,7 +400,7 @@ class _NewTransactionPageState extends State<NewTransactionPage> {
                                 child: Container(
                                   child: Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 8.0, top: 12),
+                                        left: 6.0, top: 12),
                                     child: Text(
                                         catogorie == ""
                                             ? "Select a category"
@@ -412,7 +412,8 @@ class _NewTransactionPageState extends State<NewTransactionPage> {
                                             fontSize: 15)),
                                   ),
                                   height: 50,
-                                  width: 270,
+                                  width:
+                                      MediaQuery.of(context).size.width / 2.1,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(7),
                                       border: Border.all(
@@ -769,7 +770,8 @@ class _NewTransactionPageState extends State<NewTransactionPage> {
                                             fontSize: 15)),
                                   ),
                                   height: 50,
-                                  width: 270,
+                                  width:
+                                      MediaQuery.of(context).size.width / 2.1,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(7),
                                       border: Border.all(

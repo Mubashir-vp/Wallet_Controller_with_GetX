@@ -46,9 +46,8 @@ class _NewsplashscreenState extends State<Newsplashscreen> {
       backgroundColor: obj.yellow,
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
+        child: ListView(
+          // mainAxisSize: MainAxisSize.min,
           children: [
             const SizedBox(
               height: 80,

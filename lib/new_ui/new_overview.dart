@@ -364,20 +364,24 @@ class _NewOverviewState extends State<NewOverview> {
                         borderRadius: BorderRadius.circular(8)),
                     child: Column(
                       children: [
-                        Text(
-                          formattedDate,
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: obj.black,
-                            fontFamily: 'Poppins',
+                        Expanded(
+                          child: Text(
+                            formattedDate,
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: obj.black,
+                              fontFamily: 'Poppins',
+                            ),
                           ),
                         ),
-                        Text(
-                          formattedDate1,
-                          style: TextStyle(
-                            fontSize: 10,
-                            color: obj.black,
-                            fontFamily: 'Poppins',
+                        Expanded(
+                          child: Text(
+                            formattedDate1,
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: obj.black,
+                              fontFamily: 'Poppins',
+                            ),
                           ),
                         ),
                       ],
@@ -426,7 +430,8 @@ class _NewOverviewState extends State<NewOverview> {
                 Expanded(
                   child: Padding(
                       padding: const EdgeInsets.only(
-                          left: 0.0, right: 0, top: 16, bottom: 0),
+                        top: 16,
+                      ),
                       child: transs.isIncome == true
                           ? Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -513,12 +518,14 @@ class _NewOverviewState extends State<NewOverview> {
             Container(
                 width: 302,
                 margin: const EdgeInsets.only(
-                  top: 30,
+                  top: 20,
                   left: 16,
                 ),
                 child: new_text(
                     txt1: 'Overview', txt2: "Your transaction statitics")),
-            const SizedBox(),
+            Divider(
+              color: obj.Primarywhite,
+            ),
             Row(
               children: [
                 Expanded(
@@ -676,7 +683,7 @@ class _NewOverviewState extends State<NewOverview> {
               ],
             ),
             Container(
-              margin: const EdgeInsets.only(top: 50),
+              margin: const EdgeInsets.only(top: 30),
               height: 62,
               color: HexColor("#F8F8F8"),
               child: Row(
@@ -747,8 +754,8 @@ class _NewOverviewState extends State<NewOverview> {
                   color: obj.secondary,
                   borderRadius: BorderRadius.circular(15)),
               margin: EdgeInsets.only(top: 25),
-              width: 318,
-              height: 190,
+              width: MediaQuery.of(context).size.width / 1.3,
+              height: MediaQuery.of(context).size.height / 3.56,
               child: income == true
                   ? piechartIncome.isNotEmpty
                       ? Row(
@@ -756,55 +763,58 @@ class _NewOverviewState extends State<NewOverview> {
                           children: [
                             Expanded(
                               flex: 13,
-                              child: piechart(
-                                  val: All == true
-                                      ? catgorieFetchingInc(
-                                          sumOfCatogoriesFromTransBox: transbox.keys
-                                              .cast<int>()
-                                              .where((Key) =>
-                                                  transbox.get(Key)!.isIncome ==
-                                                  true)
-                                              .toList(),
-                                          isIncome: true)
-                                      : Today == true
+                              child: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 50.0),
+                                  child: piechart(
+                                      val: All == true
                                           ? catgorieFetchingInc(
-                                              sumOfCatogoriesFromTransBox: transbox
-                                                  .keys
+                                              sumOfCatogoriesFromTransBox: transbox.keys
                                                   .cast<int>()
                                                   .where((Key) =>
-                                                      transbox.get(Key)!.isIncome == true &&
-                                                      transbox.get(Key)!.time ==
-                                                          _date)
+                                                      transbox.get(Key)!.isIncome ==
+                                                      true)
                                                   .toList(),
                                               isIncome: true)
-                                          : Yesterday == true
+                                          : Today == true
                                               ? catgorieFetchingInc(
                                                   sumOfCatogoriesFromTransBox:
                                                       transbox.keys
+                                                          .cast<int>()
+                                                          .where((Key) =>
+                                                              transbox.get(Key)!.isIncome == true &&
+                                                              transbox.get(Key)!.time ==
+                                                                  _date)
+                                                          .toList(),
+                                                  isIncome: true)
+                                              : Yesterday == true
+                                                  ? catgorieFetchingInc(
+                                                      sumOfCatogoriesFromTransBox: transbox
+                                                          .keys
                                                           .cast<int>()
                                                           .where((Key) =>
                                                               transbox
                                                                       .get(Key)!
                                                                       .isIncome ==
                                                                   true &&
-                                                              transbox
-                                                                      .get(Key)!
-                                                                      .time ==
+                                                              transbox.get(Key)!.time ==
                                                                   _yesterday)
                                                           .toList(),
-                                                  isIncome: true)
-                                              : Monthly == true
-                                                  ? catgorieFetchingInc(
-                                                      sumOfCatogoriesFromTransBox:
-                                                          transbox.keys
-                                                              .cast<int>()
-                                                              .where((Key) => transbox.get(Key)!.time.month == month.month && transbox.get(Key)!.isIncome == true)
-                                                              .toList(),
                                                       isIncome: true)
-                                                  : Custom == true
-                                                      ? catgorieFetchingIncCustom()
-                                                      : val(),
-                                  color: Colors.green),
+                                                  : Monthly == true
+                                                      ? catgorieFetchingInc(
+                                                          sumOfCatogoriesFromTransBox:
+                                                              transbox.keys
+                                                                  .cast<int>()
+                                                                  .where((Key) => transbox.get(Key)!.time.month == month.month && transbox.get(Key)!.isIncome == true)
+                                                                  .toList(),
+                                                          isIncome: true)
+                                                      : Custom == true
+                                                          ? catgorieFetchingIncCustom()
+                                                          : val(),
+                                      color: Colors.green),
+                                ),
+                              ),
                             ),
                             const Expanded(
                               flex: 1,
@@ -892,12 +902,10 @@ class _NewOverviewState extends State<NewOverview> {
                           ),
                         ),
             ),
-            const SizedBox(
-              height: 60,
-            ),
+            Divider(),
             Expanded(
               child: Container(
-                height: MediaQuery.of(context).size.height / 4.30,
+                height: MediaQuery.of(context).size.height / 5,
                 decoration: BoxDecoration(
                     color: obj.secondary,
                     borderRadius: const BorderRadius.only(
@@ -907,7 +915,7 @@ class _NewOverviewState extends State<NewOverview> {
                   children: [
                     Expanded(
                         child: SizedBox(
-                      height: MediaQuery.of(context).size.height / .8,
+                      // height: MediaQuery.of(context).size.height / .8,
                       child: income == true
                           ? ValueListenableBuilder(
                               valueListenable: transbox.listenable(),
@@ -1051,20 +1059,26 @@ class _NewOverviewState extends State<NewOverview> {
                                                               8)),
                                                   child: Column(
                                                     children: [
-                                                      Text(
-                                                        formattedDate,
-                                                        style: TextStyle(
-                                                          fontSize: 20,
-                                                          color: obj.black,
-                                                          fontFamily: 'Poppins',
+                                                      Expanded(
+                                                        child: Text(
+                                                          formattedDate,
+                                                          style: TextStyle(
+                                                            fontSize: 20,
+                                                            color: obj.black,
+                                                            fontFamily:
+                                                                'Poppins',
+                                                          ),
                                                         ),
                                                       ),
-                                                      Text(
-                                                        formattedDate1,
-                                                        style: TextStyle(
-                                                          fontSize: 10,
-                                                          color: obj.black,
-                                                          fontFamily: 'Poppins',
+                                                      Expanded(
+                                                        child: Text(
+                                                          formattedDate1,
+                                                          style: TextStyle(
+                                                            fontSize: 10,
+                                                            color: obj.black,
+                                                            fontFamily:
+                                                                'Poppins',
+                                                          ),
                                                         ),
                                                       ),
                                                     ],

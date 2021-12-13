@@ -60,20 +60,24 @@ class _NewCategoriesState extends State<NewCategories> {
                         borderRadius: BorderRadius.circular(8)),
                     child: Column(
                       children: [
-                        Text(
-                          formattedDate,
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: obj.black,
-                            fontFamily: 'Poppins',
+                        Expanded(
+                          child: Text(
+                            formattedDate,
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: obj.black,
+                              fontFamily: 'Poppins',
+                            ),
                           ),
                         ),
-                        Text(
-                          formattedDate1,
-                          style: TextStyle(
-                            fontSize: 10,
-                            color: obj.black,
-                            fontFamily: 'Poppins',
+                        Expanded(
+                          child: Text(
+                            formattedDate1,
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: obj.black,
+                              fontFamily: 'Poppins',
+                            ),
                           ),
                         ),
                       ],
