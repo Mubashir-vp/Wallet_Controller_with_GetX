@@ -1,7 +1,5 @@
 // ignore_for_file: file_names
 
-import 'dart:ffi';
-
 import 'package:hive_flutter/adapters.dart';
 part 'transactionModel.g.dart';
 

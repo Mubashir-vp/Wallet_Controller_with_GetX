@@ -348,6 +348,7 @@ class _NewOverviewState extends State<NewOverview> {
           padding:
               const EdgeInsets.only(left: 6.0, right: 6, bottom: 0, top: 0),
           child: Container(
+            // color: obj.yellow,
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height / 10,
             child: Row(
@@ -430,8 +431,7 @@ class _NewOverviewState extends State<NewOverview> {
                 Expanded(
                   child: Padding(
                       padding: const EdgeInsets.only(
-                        top: 16,
-                      ),
+                          left: 0.0, right: 0, top: 16, bottom: 0),
                       child: transs.isIncome == true
                           ? Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -441,13 +441,15 @@ class _NewOverviewState extends State<NewOverview> {
                                   color: HexColor("#52AA54"),
                                   size: 11,
                                 ),
-                                Text(
-                                  " ${transs.amount}",
-                                  style: TextStyle(
-                                      color: HexColor("#52AA54"),
-                                      fontFamily: "Poppins",
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w600),
+                                Expanded(
+                                  child: Text(
+                                    " ${transs.amount}",
+                                    style: TextStyle(
+                                        color: HexColor("#52AA54"),
+                                        fontFamily: "Poppins",
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w600),
+                                  ),
                                 )
                               ],
                             )
@@ -459,29 +461,19 @@ class _NewOverviewState extends State<NewOverview> {
                                   color: HexColor("#FE5355"),
                                   size: 13,
                                 ),
-                                Text(
-                                  " ${transs.amount}",
-                                  style: TextStyle(
-                                      color: HexColor("#FE5355"),
-                                      fontFamily: "Poppins",
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600),
+                                Expanded(
+                                  child: Text(
+                                    " ${transs.amount}",
+                                    style: TextStyle(
+                                        color: HexColor("#FE5355"),
+                                        fontFamily: "Poppins",
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w600),
+                                  ),
                                 )
                               ],
                             )),
                 ),
-                // IconButton(
-                //   icon: const Icon(Icons.delete),
-                //   onPressed: () {
-                //     transbox!.delete(key).then((value) {
-                //       // initFunction();
-                //       setState(() {});
-                //       Future.delayed(const Duration(seconds: 1), () {
-                //         // initFunction();
-                //       });
-                //     });
-                //   },
-                // )
               ],
             ),
           ),
@@ -553,8 +545,6 @@ class _NewOverviewState extends State<NewOverview> {
                           ),
                           elevation: 30,
                           iconSize: 32,
-                          focusColor: Colors.blue,
-                          autofocus: true,
                           decoration: const InputDecoration(
                             border: InputBorder.none,
                             focusedBorder: InputBorder.none,

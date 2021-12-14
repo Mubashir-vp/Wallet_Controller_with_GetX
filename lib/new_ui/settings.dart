@@ -75,8 +75,7 @@ class _settingsState extends State<settings> {
       NotificationApi2.showScheduledNotification(
           scheduledTime: Time(timee.hour, timee.minute, 0),
           title: "Wallet Controller",
-          body: "Its Time To Add Your Transactions",
-          payload: "Payload");
+          body: "Its Time To Add Your Transactions");
     });
   }
 
@@ -86,16 +85,17 @@ class _settingsState extends State<settings> {
     super.initState();
     checkButtonSwitched();
     NotificationApi2.init(initScheduled: true);
-    listenNotifications();
+    // listenNotifications();
     sharedtimeGetting();
   }
 
-  listenNotifications() {
-    NotificationApi2.onNotifications.stream.listen(onClickedNotification);
-  }
+  // listenNotifications() {
+  //   NotificationApi2.onNotifications.stream.listen(onClickedNotification);
+  // }
 
   void onClickedNotification(String? payload) =>
       Navigator.pushReplacementNamed(context, 'Home');
+
   trueFunction() async {
     final shared = await SharedPreferences.getInstance();
     shared.setBool(IS_SWITCHED, true);

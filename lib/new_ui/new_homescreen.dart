@@ -160,12 +160,16 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
         formattedDate = DateFormat('dd').format(_date);
         formattedDate1 = DateFormat('EEE').format(_date);
 
-        return Padding(
-          padding:
-              const EdgeInsets.only(left: 6.0, right: 6, bottom: 0, top: 0),
-          child: GestureDetector(
-            onLongPress: () {
-              showDialog(
+        return Dismissible(
+          background: Container(
+            color: Colors.red,
+            child: Center(child: Icon(Icons.delete)),
+          ),
+          key: ValueKey<int>(key),
+          direction: DismissDirection.endToStart,
+          confirmDismiss: (direction) async {
+            if (direction == DismissDirection.endToStart) {
+              final bool res = await showDialog(
                   context: context,
                   builder: (BuildContext) {
                     return AlertDialog(
@@ -193,7 +197,6 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                                           MaterialStateProperty.all(
                                               obj.yellow)),
                                   onPressed: () {
-                                    transbox!.delete(key);
                                     transbox!.delete(key).then((value) {
                                       initFunction();
                                       setState(() {});
@@ -202,7 +205,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                                         initFunction();
                                       });
                                     });
-                                    Navigator.pop(context);
+                                    Navigator.of(context).pop(true);
                                   },
                                   child: Text(
                                     "Yes",
@@ -216,7 +219,10 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                                       backgroundColor:
                                           MaterialStateProperty.all(
                                               obj.yellow)),
-                                  onPressed: () => Navigator.pop(context),
+                                  onPressed: () {
+                                    Navigator.of(context).pop(false);
+
+                                  },
                                   child: Text(
                                     "No",
                                     style: TextStyle(
@@ -230,130 +236,143 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                       ),
                     );
                   });
-            },
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 10,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 16.0, right: 16, top: 28, bottom: 0),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                          color: obj.Primarywhite,
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              formattedDate,
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: obj.black,
-                                fontFamily: 'Poppins',
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Text(
-                              formattedDate1,
-                              style: TextStyle(
-                                fontSize: 10,
-                                color: obj.black,
-                                fontFamily: 'Poppins',
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 28,
-                      bottom: 0,
-                      left: 1,
-                      right: 36,
-                    ),
-                    child: Container(
-                      width: 180,
-                      margin: const EdgeInsets.only(left: 1, right: 1),
-                      // color: Colors.red,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              transs.categorie.toUpperCase(),
-                              style: TextStyle(
+              return res;
+            } else {
+              Navigator.pop(context);
+            }
+          },
+          onDismissed: (DismissDirection direction) {},
+          child: InkWell(
+            child: Padding(
+              padding:
+                  const EdgeInsets.only(left: 6.0, right: 6, bottom: 0, top: 0),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height / 10,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 16.0, right: 16, top: 28, bottom: 0),
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                            color: obj.Primarywhite,
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                formattedDate,
+                                style: TextStyle(
+                                  fontSize: 20,
                                   color: obj.black,
                                   fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16),
+                                ),
+                              ),
                             ),
-                          ),
-                          Expanded(
-                            child: Text(
-                              transs.notes ?? "",
-                              style: TextStyle(
-                                  color: HexColor('#8A8A8A'),
+                            Expanded(
+                              child: Text(
+                                formattedDate1,
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  color: obj.black,
                                   fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 17),
+                                ),
+                              ),
                             ),
-                          )
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(),
-                  Expanded(
-                    child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 0.0, right: 0, top: 16, bottom: 0),
-                        child: transs.isIncome == true
-                            ? Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  FaIcon(
-                                    FontAwesomeIcons.rupeeSign,
-                                    color: HexColor("#52AA54"),
-                                    size: 11,
-                                  ),
-                                  Text(
-                                    " ${transs.amount}",
-                                    style: TextStyle(
-                                        color: HexColor("#52AA54"),
-                                        fontFamily: "Poppins",
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w600),
-                                  )
-                                ],
-                              )
-                            : Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  FaIcon(
-                                    FontAwesomeIcons.rupeeSign,
-                                    color: HexColor("#FE5355"),
-                                    size: 13,
-                                  ),
-                                  Text(
-                                    " ${transs.amount}",
-                                    style: TextStyle(
-                                        color: HexColor("#FE5355"),
-                                        fontFamily: "Poppins",
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600),
-                                  )
-                                ],
-                              )),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 28,
+                        bottom: 0,
+                        left: 1,
+                        right: 36,
+                      ),
+                      child: Container(
+                        width: 180,
+                        margin: const EdgeInsets.only(left: 1, right: 1),
+                        // color: Colors.red,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                transs.categorie.toUpperCase(),
+                                style: TextStyle(
+                                    color: obj.black,
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16),
+                              ),
+                            ),
+                            Expanded(
+                              child: Text(
+                                transs.notes ?? "",
+                                style: TextStyle(
+                                    color: HexColor('#8A8A8A'),
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 17),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 0.0, right: 0, top: 16, bottom: 0),
+                          child: transs.isIncome == true
+                              ? Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    FaIcon(
+                                      FontAwesomeIcons.rupeeSign,
+                                      color: HexColor("#52AA54"),
+                                      size: 11,
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        " ${transs.amount}",
+                                        style: TextStyle(
+                                            color: HexColor("#52AA54"),
+                                            fontFamily: "Poppins",
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    )
+                                  ],
+                                )
+                              : Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    FaIcon(
+                                      FontAwesomeIcons.rupeeSign,
+                                      color: HexColor("#FE5355"),
+                                      size: 13,
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        " ${transs.amount}",
+                                        style: TextStyle(
+                                            color: HexColor("#FE5355"),
+                                            fontFamily: "Poppins",
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    )
+                                  ],
+                                )),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -454,35 +473,41 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                   borderRadius: BorderRadius.circular(15)),
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Total Balance",
-                      style: TextStyle(
-                          color: HexColor("#736E62"),
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FaIcon(
-                          FontAwesomeIcons.rupeeSign,
-                          color: HexColor("#736E62"),
-                          size: 32,
-                        ),
-                        Text(
-                          allBalance.isNotEmpty ? " $balance" : "0.0",
-                          style: TextStyle(
+                child: SizedBox(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Total Balance",
+                        style: TextStyle(
+                            color: HexColor("#736E62"),
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: FaIcon(
+                              FontAwesomeIcons.rupeeSign,
                               color: HexColor("#736E62"),
-                              fontSize: 40,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ],
+                              size: 23,
+                            ),
+                          ),
+                          Center(
+                            child: Text(
+                              allBalance.isNotEmpty ? " $balance" : "0.0",
+                              style: TextStyle(
+                                  color: HexColor("#736E62"),
+                                  fontSize: 30,
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -494,75 +519,82 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                 top: 13,
                 right: 34,
               ),
-              child: SizedBox(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          color: HexColor("#EDFDF4"),
-                          borderRadius: BorderRadius.circular(15)),
-                      height: 85,
-                      width: MediaQuery.of(context).size.width / 2.56,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                top: 14, left: 46, right: 46),
-                            child: Text(
-                              "Income",
-                              style: TextStyle(
-                                  color: HexColor("#52AA54"),
-                                  fontFamily: "Poppins",
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w600),
-                            ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                        color: HexColor("#EDFDF4"),
+                        borderRadius: BorderRadius.circular(15)),
+                    height: MediaQuery.of(context).size.width / 5,
+                    width: MediaQuery.of(context).size.width / 2.56,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 14, left: 46, right: 46),
+                          child: Text(
+                            "Income",
+                            style: TextStyle(
+                                color: HexColor("#52AA54"),
+                                fontFamily: "Poppins",
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600),
                           ),
-                          Row(
+                        ),
+                        Expanded(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              FaIcon(
-                                FontAwesomeIcons.rupeeSign,
-                                color: HexColor("#52AA54"),
-                                size: 15,
+                              Center(
+                                child: FaIcon(
+                                  FontAwesomeIcons.rupeeSign,
+                                  color: HexColor("#52AA54"),
+                                  size: 15,
+                                ),
                               ),
-                              Text(
-                                allBalance.isNotEmpty ? " $sumInc" : "0.0",
-                                style: TextStyle(
-                                    color: HexColor("#52AA54"),
-                                    fontFamily: "Poppins",
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600),
+                              Center(
+                                child: Text(
+                                  allBalance.isNotEmpty ? " $sumInc" : "0.0",
+                                  style: TextStyle(
+                                      color: HexColor("#52AA54"),
+                                      fontFamily: "Poppins",
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600),
+                                ),
                               )
                             ],
-                          )
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 6,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: HexColor("#FDEEEC"),
-                          borderRadius: BorderRadius.circular(15)),
-                      height: 85,
-                      width: MediaQuery.of(context).size.width / 2.56,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                top: 14, left: 46, right: 46),
-                            child: Text(
-                              "Expense",
-                              style: TextStyle(
-                                  color: HexColor("#FE5355"),
-                                  fontFamily: "Poppins",
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w600),
-                            ),
                           ),
-                          Row(
+                        )
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 6,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: HexColor("#FDEEEC"),
+                        borderRadius: BorderRadius.circular(15)),
+                                        height: MediaQuery.of(context).size.width / 5,
+
+                    width: MediaQuery.of(context).size.width / 2.56,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 14, left: 46, right: 46),
+                          child: Text(
+                            "Expense",
+                            style: TextStyle(
+                                color: HexColor("#FE5355"),
+                                fontFamily: "Poppins",
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                        Expanded(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               FaIcon(
@@ -571,7 +603,9 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                                 size: 15,
                               ),
                               Text(
-                                allBalance.isNotEmpty ? " $sumExpense" : "0.0",
+                                allBalance.isNotEmpty
+                                    ? " $sumExpense"
+                                    : "0.0",
                                 style: TextStyle(
                                     color: HexColor("#FE5355"),
                                     fontFamily: "Poppins",
@@ -579,12 +613,12 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                                     fontWeight: FontWeight.w600),
                               )
                             ],
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
               ),
             ),
             const SizedBox(
@@ -628,8 +662,6 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                                   ),
                                   elevation: 30,
                                   iconSize: 32,
-                                  focusColor: Colors.blue,
-                                  autofocus: true,
                                   decoration: const InputDecoration(
                                     border: InputBorder.none,
                                     focusedBorder: InputBorder.none,
@@ -865,109 +897,94 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                                     formattedDate1 =
                                         DateFormat('EEE').format(_date);
 
-                                    return Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 6.0,
-                                          right: 6,
-                                          bottom: 0,
-                                          top: 0),
-                                      child: GestureDetector(
-                                        onLongPress: () {
-                                          showDialog(
-                                              context: context,
-                                              builder: (BuildContext) {
-                                                return AlertDialog(
-                                                  backgroundColor:
-                                                      obj.secondary,
-                                                  content: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    children: [
-                                                      const Text(
-                                                        " Delete this Transaction",
-                                                        style: TextStyle(
-                                                            fontFamily:
-                                                                "Poppins",
-                                                            color: Colors
-                                                                .redAccent,
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w600),
-                                                      ),
-                                                      const SizedBox(
-                                                        height: 40,
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceAround,
-                                                        children: [
-                                                          TextButton(
-                                                              style: ButtonStyle(
-                                                                  backgroundColor:
-                                                                      MaterialStateProperty
-                                                                          .all(obj
-                                                                              .yellow)),
-                                                              onPressed: () {
-                                                                transbox!
-                                                                    .delete(
-                                                                        key);
-                                                                transbox!
-                                                                    .delete(key)
-                                                                    .then(
-                                                                        (value) {
-                                                                  initFunction();
-                                                                  setState(
-                                                                      () {});
-                                                                  Future.delayed(
-                                                                      const Duration(
-                                                                          seconds:
-                                                                              1),
-                                                                      () {
-                                                                    initFunction();
-                                                                  });
-                                                                });
-                                                                Navigator.pop(
-                                                                    context);
-                                                              },
-                                                              child: Text(
-                                                                "Yes",
-                                                                style: TextStyle(
-                                                                    fontFamily:
-                                                                        "Poppins",
-                                                                    color: obj
-                                                                        .Primarywhite,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500),
-                                                              )),
-                                                          TextButton(
-                                                              style: ButtonStyle(
-                                                                  backgroundColor:
-                                                                      MaterialStateProperty.all(obj
-                                                                          .yellow)),
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      context),
-                                                              child: Text(
-                                                                "No",
-                                                                style: TextStyle(
-                                                                    fontFamily:
-                                                                        "Poppins",
-                                                                    color: obj
-                                                                        .Primarywhite,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500),
-                                                              )),
-                                                        ],
-                                                      )
-                                                    ],
-                                                  ),
-                                                );
-                                              });
-                                        },
+                                    return Dismissible(
+                                       background: Container(
+            color: Colors.red,
+            child: Center(child: Icon(Icons.delete)),
+          ),
+          key: ValueKey<int>(key),
+          direction: DismissDirection.endToStart,
+          confirmDismiss: (direction) async {
+            if (direction == DismissDirection.endToStart) {
+              final bool res = await showDialog(
+                  context: context,
+                  builder: (BuildContext) {
+                    return AlertDialog(
+                      backgroundColor: obj.secondary,
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Text(
+                            " Delete this Transaction",
+                            style: TextStyle(
+                                fontFamily: "Poppins",
+                                color: Colors.redAccent,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600),
+                          ),
+                          const SizedBox(
+                            height: 40,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              TextButton(
+                                  style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              obj.yellow)),
+                                  onPressed: () {
+                                    transbox!.delete(key).then((value) {
+                                      initFunction();
+                                      setState(() {});
+                                      Future.delayed(const Duration(seconds: 1),
+                                          () {
+                                        initFunction();
+                                      });
+                                    });
+                                    Navigator.of(context).pop(true);
+                                  },
+                                  child: Text(
+                                    "Yes",
+                                    style: TextStyle(
+                                        fontFamily: "Poppins",
+                                        color: obj.Primarywhite,
+                                        fontWeight: FontWeight.w500),
+                                  )),
+                              TextButton(
+                                  style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              obj.yellow)),
+                                  onPressed: () {
+                                    Navigator.of(context).pop(false);
+
+                                  },
+                                  child: Text(
+                                    "No",
+                                    style: TextStyle(
+                                        fontFamily: "Poppins",
+                                        color: obj.Primarywhite,
+                                        fontWeight: FontWeight.w500),
+                                  )),
+                            ],
+                          )
+                        ],
+                      ),
+                    );
+                  });
+              return res;
+            } else {
+              Navigator.pop(context);
+            }
+          },
+          onDismissed: (DismissDirection direction) {},
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 6.0,
+                                            right: 6,
+                                            bottom: 0,
+                                            top: 0),
                                         child: Container(
                                           width:
                                               MediaQuery.of(context).size.width,

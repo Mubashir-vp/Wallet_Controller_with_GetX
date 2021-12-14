@@ -241,6 +241,8 @@ class _NewTransactionPageState extends State<NewTransactionPage> {
                                           return "Enter a correct amount";
                                         } else if (value[0] == "-") {
                                           return "Enter a correct amount";
+                                        } else if (value.length >= 7) {
+                                          return "Enter a correct amount";
                                         } else {
                                           return null;
                                         }
@@ -489,9 +491,16 @@ class _NewTransactionPageState extends State<NewTransactionPage> {
 
                                 transactionbox.add(income);
                                 setState(() {});
+                                FocusScopeNode currentFocus = FocusScope.of(context);
+
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      
 
                                 incomecontroller.clear();
-                                Navigator.pushReplacementNamed(context, "Home")
+                                Navigator.pushNamedAndRemoveUntil(
+                                        context, "Home", (route) => false)
                                     .then((value) {
                                   setState(() {});
                                   setState(() {});
@@ -595,7 +604,7 @@ class _NewTransactionPageState extends State<NewTransactionPage> {
                                                 r'^[a-z A-Z _\-=@,\.;( ,)[, ], {, }, *, +, ?, ., ^, $, |]+$,-')
                                             .hasMatch(value)) {
                                           return "Enter a correct amount";
-                                        } else if (value.length >= 20) {
+                                        } else if (value.length >= 10) {
                                           return "Enter a correct amount";
                                         } else if (value[0] == "-") {
                                           return "Enter a correct amount";
@@ -847,9 +856,15 @@ class _NewTransactionPageState extends State<NewTransactionPage> {
 
                                 transactionbox.add(income);
                                 setState(() {});
+                                                FocusScopeNode currentFocus = FocusScope.of(context);
+
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
 
                                 incomecontroller.clear();
-                                Navigator.pushReplacementNamed(context, "Home")
+                                Navigator.pushNamedAndRemoveUntil(
+                                        context, "Home", (route) => false)
                                     .then((value) {
                                   setState(() {});
                                   setState(() {});

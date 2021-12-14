@@ -27,6 +27,7 @@ class _NewCategoriesState extends State<NewCategories> {
       DateTime(yesterday.year, yesterday.month, (yesterday.day) - 1);
   String formattedDate = DateFormat('MMM-dd').format(_date);
   String formattedDate1 = DateFormat('MMM-dd').format(_date);
+
   Widget listView({required id}) {
     return ListView.separated(
       itemBuilder: (context, index) {
@@ -43,7 +44,8 @@ class _NewCategoriesState extends State<NewCategories> {
         return Padding(
           padding:
               const EdgeInsets.only(left: 6.0, right: 6, bottom: 0, top: 0),
-          child: SizedBox(
+          child: Container(
+            // color: obj.yellow,
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height / 10,
             child: Row(
@@ -136,13 +138,15 @@ class _NewCategoriesState extends State<NewCategories> {
                                   color: HexColor("#52AA54"),
                                   size: 11,
                                 ),
-                                Text(
-                                  " ${transs.amount}",
-                                  style: TextStyle(
-                                      color: HexColor("#52AA54"),
-                                      fontFamily: "Poppins",
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w600),
+                                Expanded(
+                                  child: Text(
+                                    " ${transs.amount}",
+                                    style: TextStyle(
+                                        color: HexColor("#52AA54"),
+                                        fontFamily: "Poppins",
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w600),
+                                  ),
                                 )
                               ],
                             )
@@ -154,13 +158,15 @@ class _NewCategoriesState extends State<NewCategories> {
                                   color: HexColor("#FE5355"),
                                   size: 13,
                                 ),
-                                Text(
-                                  " ${transs.amount}",
-                                  style: TextStyle(
-                                      color: HexColor("#FE5355"),
-                                      fontFamily: "Poppins",
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600),
+                                Expanded(
+                                  child: Text(
+                                    " ${transs.amount}",
+                                    style: TextStyle(
+                                        color: HexColor("#FE5355"),
+                                        fontFamily: "Poppins",
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w600),
+                                  ),
                                 )
                               ],
                             )),

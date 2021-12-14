@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
-import 'package:wallet_controller/home.dart';
-import 'package:wallet_controller/main.dart';
-import 'package:wallet_controller/new_ui/new_homescreen.dart';
 import 'package:wallet_controller/widget/widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -49,20 +45,22 @@ class _NewsplashscreenState extends State<Newsplashscreen> {
         child: ListView(
           // mainAxisSize: MainAxisSize.min,
           children: [
-            const SizedBox(
-              height: 80,
+            SizedBox(
+              height: 40,
             ),
             img(),
             const SizedBox(
-              height: 80,
+              height: 40,
             ),
-            Text(
-              "Your Wallet\nControl In\nOne App.",
-              style: TextStyle(
-                  fontSize: 48,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: 'Poppins',
-                  color: obj.black),
+            Center(
+              child: Text(
+                "Your Wallet\nControl In\nOne App.",
+                style: TextStyle(
+                    fontSize: 48,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'Poppins',
+                    color: obj.black),
+              ),
             ),
             const SizedBox(
               height: 30,
@@ -99,10 +97,7 @@ class _NewsplashscreenState extends State<Newsplashscreen> {
                     ],
                   )),
             ),
-            const Expanded(
-                child: SizedBox(
-              height: 200,
-            ))
+            Divider()
           ],
         ),
       ),
