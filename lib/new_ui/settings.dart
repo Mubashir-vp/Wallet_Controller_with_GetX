@@ -290,7 +290,7 @@ class _settingsState extends State<settings> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 24.0, right: 24),
-                  child: Setiing(txt: "Version: 0.0.1"),
+                  child: Setiing(txt: "Version: 1.0.3"),
                 ),
               ],
             ),

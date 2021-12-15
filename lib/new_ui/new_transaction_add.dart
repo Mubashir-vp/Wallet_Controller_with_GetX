@@ -241,7 +241,7 @@ class _NewTransactionPageState extends State<NewTransactionPage> {
                                           return "Enter a correct amount";
                                         } else if (value[0] == "-") {
                                           return "Enter a correct amount";
-                                        } else if (value.length >= 7) {
+                                        } else if (value.length >= 18) {
                                           return "Enter a correct amount";
                                         } else {
                                           return null;
@@ -477,7 +477,7 @@ class _NewTransactionPageState extends State<NewTransactionPage> {
                               if (keys.isEmpty) {
                                 show(context, txt: 'Categories is empty');
                               } else if (catogorie == "") {
-                                show(context, txt: "Please select a category");
+                                show(context, txt: "Oops did you forget to select a category");
                               } else {
                                 double incamount =
                                     double.parse(incomecontroller.text);
@@ -604,7 +604,7 @@ class _NewTransactionPageState extends State<NewTransactionPage> {
                                                 r'^[a-z A-Z _\-=@,\.;( ,)[, ], {, }, *, +, ?, ., ^, $, |]+$,-')
                                             .hasMatch(value)) {
                                           return "Enter a correct amount";
-                                        } else if (value.length >= 10) {
+                                        } else if (value.length >= 18) {
                                           return "Enter a correct amount";
                                         } else if (value[0] == "-") {
                                           return "Enter a correct amount";
@@ -842,7 +842,7 @@ class _NewTransactionPageState extends State<NewTransactionPage> {
                               if (keys.isEmpty) {
                                 show(context, txt: 'Categories is empty');
                               } else if (expcatogorie == "") {
-                                show(context, txt: "Please select a category");
+                                show(context, txt: "Oops did you forget to select a category");
                               } else {
                                 double incamount =
                                     double.parse(incomecontroller.text);

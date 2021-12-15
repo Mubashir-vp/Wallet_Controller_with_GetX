@@ -242,138 +242,130 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
             }
           },
           onDismissed: (DismissDirection direction) {},
-          child: InkWell(
-            child: Padding(
-              padding:
-                  const EdgeInsets.only(left: 6.0, right: 6, bottom: 0, top: 0),
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 10,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 16.0, right: 16, top: 28, bottom: 0),
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                            color: obj.Primarywhite,
-                            borderRadius: BorderRadius.circular(8)),
-                        child: Column(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                formattedDate,
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: obj.black,
-                                  fontFamily: 'Poppins',
-                                ),
-                              ),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height / 10,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 16.0, right: 16, top: 28, bottom: 0),
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: obj.Primarywhite,
+                        borderRadius: BorderRadius.circular(8)),
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            formattedDate,
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: obj.black,
+                              fontFamily: 'Poppins',
                             ),
-                            Expanded(
-                              child: Text(
-                                formattedDate1,
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  color: obj.black,
-                                  fontFamily: 'Poppins',
-                                ),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 28,
-                        bottom: 0,
-                        left: 1,
-                        right: 36,
-                      ),
-                      child: Container(
-                        width: 180,
-                        margin: const EdgeInsets.only(left: 1, right: 1),
-                        // color: Colors.red,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                transs.categorie.toUpperCase(),
-                                style: TextStyle(
-                                    color: obj.black,
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16),
-                              ),
+                        Expanded(
+                          child: Text(
+                            formattedDate1,
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: obj.black,
+                              fontFamily: 'Poppins',
                             ),
-                            Expanded(
-                              child: Text(
-                                transs.notes ?? "",
-                                style: TextStyle(
-                                    color: HexColor('#8A8A8A'),
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 17),
-                              ),
-                            )
-                          ],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                    Expanded(
-                      child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 0.0, right: 0, top: 16, bottom: 0),
-                          child: transs.isIncome == true
-                              ? Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    FaIcon(
-                                      FontAwesomeIcons.rupeeSign,
-                                      color: HexColor("#52AA54"),
-                                      size: 11,
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        " ${transs.amount}",
-                                        style: TextStyle(
-                                            color: HexColor("#52AA54"),
-                                            fontFamily: "Poppins",
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                    )
-                                  ],
-                                )
-                              : Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    FaIcon(
-                                      FontAwesomeIcons.rupeeSign,
-                                      color: HexColor("#FE5355"),
-                                      size: 13,
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        " ${transs.amount}",
-                                        style: TextStyle(
-                                            color: HexColor("#FE5355"),
-                                            fontFamily: "Poppins",
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                    )
-                                  ],
-                                )),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 28,
+                  
+                    
+                  ),
+                  child: Container(
+                    width: 180,
+                    margin: const EdgeInsets.only(left: 1, right: 1),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            transs.categorie.toUpperCase(),
+                            style: TextStyle(
+                                color: obj.black,
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16),
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            transs.notes ?? "",
+                            style: TextStyle(
+                                color: HexColor('#8A8A8A'),
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.w600,
+                                fontSize: 17),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                      padding: const EdgeInsets.only(
+                          left: 0.0, right: 0, top: 16, bottom: 0),
+                      child: transs.isIncome == true
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                FaIcon(
+                                  FontAwesomeIcons.rupeeSign,
+                                  color: HexColor("#52AA54"),
+                                  size: 11,
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    " ${transs.amount}",
+                                    style: TextStyle(
+                                        color: HexColor("#52AA54"),
+                                        fontFamily: "Poppins",
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                )
+                              ],
+                            )
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                FaIcon(
+                                  FontAwesomeIcons.rupeeSign,
+                                  color: HexColor("#FE5355"),
+                                  size: 13,
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    " -${transs.amount}",
+                                    style: TextStyle(
+                                        color: HexColor("#FE5355"),
+                                        fontFamily: "Poppins",
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                )
+                              ],
+                            )),
+                ),
+              ],
             ),
           ),
         );
@@ -460,53 +452,55 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
 
             //TotalTransactionCard****
 
-            Container(
-              height: MediaQuery.of(context).size.height / 5.4,
-              width: MediaQuery.of(context).size.width / 1.2,
-              margin: const EdgeInsets.only(
-                left: 20,
-                top: 20,
-                right: 20,
-              ),
-              decoration: BoxDecoration(
-                  color: obj.secondary,
-                  borderRadius: BorderRadius.circular(15)),
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: SizedBox(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Total Balance",
-                        style: TextStyle(
-                            color: HexColor("#736E62"),
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Center(
-                            child: FaIcon(
-                              FontAwesomeIcons.rupeeSign,
+            Expanded(
+              flex:1,
+              child: Container(
+                height: MediaQuery.of(context).size.height / 4,
+                width: MediaQuery.of(context).size.width / 1.2,
+                margin: const EdgeInsets.only(
+                  left: 20,
+                  top: 20,
+                  right: 20,
+                ),
+                decoration: BoxDecoration(
+                    color: obj.secondary,
+                    borderRadius: BorderRadius.circular(15)),
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: SizedBox(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Total Balance",
+                          style: TextStyle(
                               color: HexColor("#736E62"),
-                              size: 23,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600),
+                        ),Divider(color: obj.secondary,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Center(
+                              child: FaIcon(
+                                FontAwesomeIcons.rupeeSign,
+                                color: HexColor("#736E62"),
+                                size: 12,
+                              ),
                             ),
-                          ),
-                          Center(
-                            child: Text(
-                              allBalance.isNotEmpty ? " $balance" : "0.0",
-                              style: TextStyle(
-                                  color: HexColor("#736E62"),
-                                  fontSize: 30,
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w600),
+                            Center(
+                              child: Text(
+                                allBalance.isNotEmpty ? " $balance" : " 0.0",
+                                style: TextStyle(
+                                    color: HexColor("#736E62"),
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.w600),
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -522,100 +516,101 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        color: HexColor("#EDFDF4"),
-                        borderRadius: BorderRadius.circular(15)),
-                    height: MediaQuery.of(context).size.width / 5,
-                    width: MediaQuery.of(context).size.width / 2.56,
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 14, left: 46, right: 46),
-                          child: Text(
-                            "Income",
-                            style: TextStyle(
-                                color: HexColor("#52AA54"),
-                                fontFamily: "Poppins",
-                                fontSize: 13,
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ),
-                        Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Center(
-                                child: FaIcon(
-                                  FontAwesomeIcons.rupeeSign,
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: HexColor("#EDFDF4"),
+                          borderRadius: BorderRadius.circular(15)),
+                                          height: MediaQuery.of(context).size.width / 5,
+                      width: MediaQuery.of(context).size.width / 2.56,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top:8.0),
+                            child: Text(
+                              "Income",
+                              style: TextStyle(
                                   color: HexColor("#52AA54"),
-                                  size: 15,
-                                ),
-                              ),
-                              Center(
-                                child: Text(
-                                  allBalance.isNotEmpty ? " $sumInc" : "0.0",
-                                  style: TextStyle(
-                                      color: HexColor("#52AA54"),
-                                      fontFamily: "Poppins",
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                              )
-                            ],
+                                  fontFamily: "Poppins",
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w600),
+                            ),
                           ),
-                        )
-                      ],
+                          Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Center(
+                                  child: FaIcon(
+                                    FontAwesomeIcons.rupeeSign,
+                                    color: HexColor("#52AA54"),
+                                    size: 12,
+                                  ),
+                                ),
+                                Center(
+                                  child: Text(
+                                    allBalance.isNotEmpty ? " $sumInc" : " 0.0",
+                                    style: TextStyle(
+                                        color: HexColor("#52AA54"),
+                                        fontFamily: "Poppins",
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(
                     width: 6,
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: HexColor("#FDEEEC"),
-                        borderRadius: BorderRadius.circular(15)),
-                                        height: MediaQuery.of(context).size.width / 5,
-
-                    width: MediaQuery.of(context).size.width / 2.56,
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 14, left: 46, right: 46),
-                          child: Text(
-                            "Expense",
-                            style: TextStyle(
-                                color: HexColor("#FE5355"),
-                                fontFamily: "Poppins",
-                                fontSize: 13,
-                                fontWeight: FontWeight.w600),
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: HexColor("#FDEEEC"),
+                          borderRadius: BorderRadius.circular(15)),
+                                          height: MediaQuery.of(context).size.width / 5,
+                  
+                      width: MediaQuery.of(context).size.width / 2.56,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                top: 8),
+                            child: Text(
+                              "Expense",
+                              style: TextStyle(
+                                  color: HexColor("#FE5355"),
+                                  fontFamily: "Poppins",
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w600),
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              FaIcon(
-                                FontAwesomeIcons.rupeeSign,
-                                color: HexColor("#FE5355"),
-                                size: 15,
-                              ),
-                              Text(
-                                allBalance.isNotEmpty
-                                    ? " $sumExpense"
-                                    : "0.0",
-                                style: TextStyle(
-                                    color: HexColor("#FE5355"),
-                                    fontFamily: "Poppins",
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
+                          Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                FaIcon(
+                                  FontAwesomeIcons.rupeeSign,
+                                  color: HexColor("#FE5355"),
+                                  size: 12,
+                                ),
+                                Text(
+                                  allBalance.isNotEmpty
+                                      ? " $sumExpense"
+                                      : " 0.0",
+                                  style: TextStyle(
+                                      color: HexColor("#FE5355"),
+                                      fontFamily: "Poppins",
+                                      fontWeight: FontWeight.w600),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   )
                 ],
@@ -626,6 +621,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
             ),
 
             Expanded(
+              flex: 3,
               child: Container(
                 height: MediaQuery.of(context).size.height / 2.56,
                 decoration: BoxDecoration(
