@@ -37,6 +37,8 @@ dependencies:
   animated_text_kit: ^4.2.1
   fl_chart: ^0.12.3
   syncfusion_flutter_charts: ^19.3.57
+  uuid: ^3.0.5
+  get: ^4.6.1
 
 
 
