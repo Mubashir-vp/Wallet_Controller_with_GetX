@@ -13,5 +13,7 @@
 			"path": "../../StudioProjects/wallet_controller/fonts"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "interactive"
+	}
 }

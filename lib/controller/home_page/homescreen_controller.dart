@@ -7,7 +7,6 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
-import 'package:month_picker_dialog/month_picker_dialog.dart';
 import 'package:wallet_controller/constants/constant_widget.dart';
 import 'package:wallet_controller/model/transactionModel.dart';
 
@@ -55,21 +54,21 @@ class HomeScreenController extends GetxController {
   //   return allBalance;
   // }
 
-  Future _datepicker({required var context}) async {
-    DateTime initialDate = DateTime.now();
-    final newDate = await showMonthPicker(
-      context: context,
-      firstDate: DateTime(DateTime.now().year - 10),
-      lastDate: initialDate,
-      initialDate: month,
-    );
-    if (newDate == null) return month = initialDate;
+  // Future _datepicker({required var context}) async {
+  //   DateTime initialDate = DateTime.now();
+  //   final newDate = await showMonthPicker(
+  //     context: context,
+  //     firstDate: DateTime(DateTime.now().year - 10),
+  //     lastDate: initialDate,
+  //     initialDate: month,
+  //   );
+  //   if (newDate == null) return month = initialDate;
 
-    month = newDate;
-    formattedMonth = DateFormat('MMMM').format(month);
-    print(month);
-    update();
-  }
+  //   month = newDate;
+  //   formattedMonth = DateFormat('MMMM').format(month);
+  //   print(month);
+  //   update();
+  // }
 
   Future dateRangePicker({required var context}) async {
     final _initialDateRange = DateTimeRange(
@@ -701,7 +700,8 @@ class HomeScreenController extends GetxController {
                                   Padding(
                                     padding: const EdgeInsets.all(14.0),
                                     child: GestureDetector(
-                                        onTap: () => _datepicker(context: null),
+                                        onTap: () {},
+                                        // _datepicker(context: null),
                                         child: Text(formattedMonth,
                                             style: TextStyle(
                                               color: constant.myColors.black,

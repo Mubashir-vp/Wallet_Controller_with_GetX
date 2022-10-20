@@ -57,7 +57,6 @@ dependencies:
   font_awesome_flutter: ^9.2.0
   pie_chart: ^5.1.0
   dots_indicator: ^2.0.0
-  month_picker_dialog: 
   syncfusion_flutter_datepicker: ^19.3.43
   material_design_icons_flutter:
   flutter_local_notifications: ^9.1.4

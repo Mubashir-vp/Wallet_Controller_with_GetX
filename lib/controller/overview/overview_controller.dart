@@ -7,7 +7,6 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:month_picker_dialog/month_picker_dialog.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:wallet_controller/constants/constant_widget.dart';
 import 'package:wallet_controller/model/model.dart';
@@ -253,22 +252,22 @@ class OverviewController extends GetxController {
     return allMap;
   }
 
-  Future _datepicker({required var context}) async {
-    DateTime initialDate = DateTime.now();
-    final newDate = await showMonthPicker(
-      context: context,
-      firstDate: DateTime(DateTime.now().year - 10),
-      lastDate: initialDate,
-      initialDate: month,
-    );
-    if (newDate == null) return month = initialDate;
-    month = newDate;
-    formattedMonth = DateFormat('MMMM').format(month);
+  // Future _datepicker({required var context}) async {
+  //   DateTime initialDate = DateTime.now();
+  //   final newDate = await showMonthPicker(
+  //     context: context,
+  //     firstDate: DateTime(DateTime.now().year - 10),
+  //     lastDate: initialDate,
+  //     initialDate: month,
+  //   );
+  //   if (newDate == null) return month = initialDate;
+  //   month = newDate;
+  //   formattedMonth = DateFormat('MMMM').format(month);
 
-    // formattedMonth = month.toString();
-    print(month);
-    update();
-  }
+  //   // formattedMonth = month.toString();
+  //   print(month);
+  //   update();
+  // }
 
   Future dateRangePicker({required var context}) async {
     final _initialDateRange = DateTimeRange(
@@ -434,7 +433,8 @@ class OverviewController extends GetxController {
                           Padding(
                             padding: const EdgeInsets.all(14.0),
                             child: GestureDetector(
-                                onTap: () => _datepicker(context: context),
+                                onTap: () {},
+                                //_datepicker(context: context),
                                 child: Text(formattedMonth,
                                     style: TextStyle(
                                       color: constatnt.myColors.black,
@@ -601,135 +601,58 @@ class OverviewController extends GetxController {
         .where((Key) => transbox.get(Key)!.isIncome == true)
         .toList();
 
-    return  Container(
-          decoration: BoxDecoration(
-              color: constatnt.myColors.secondary,
-              borderRadius: BorderRadius.circular(15)),
-          margin: EdgeInsets.only(top: 25),
-          width: MediaQuery.of(context).size.width / 1.3,
-          height: MediaQuery.of(context).size.height / 3.56,
-          child:
-          
-           income == true
-              ? piechartIncome.isNotEmpty
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          flex: 13,
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 50.0),
-                              child: piechart(
-                                  val: All == true
+    return Container(
+      decoration: BoxDecoration(
+          color: constatnt.myColors.secondary,
+          borderRadius: BorderRadius.circular(15)),
+      margin: EdgeInsets.only(top: 25),
+      width: MediaQuery.of(context).size.width / 1.3,
+      height: MediaQuery.of(context).size.height / 3.56,
+      child: income == true
+          ? piechartIncome.isNotEmpty
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      flex: 13,
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 50.0),
+                          child: piechart(
+                              val: All == true
+                                  ? catgorieFetchingInc(
+                                      sumOfCatogoriesFromTransBox: transbox.keys
+                                          .cast<int>()
+                                          .where((Key) =>
+                                              transbox.get(Key)!.isIncome ==
+                                              true)
+                                          .toList(),
+                                      isIncome: true)
+                                  : Today == true
                                       ? catgorieFetchingInc(
-                                          sumOfCatogoriesFromTransBox: transbox.keys
+                                          sumOfCatogoriesFromTransBox: transbox
+                                              .keys
                                               .cast<int>()
                                               .where((Key) =>
-                                                  transbox.get(Key)!.isIncome ==
-                                                  true)
+                                                  transbox.get(Key)!.isIncome == true &&
+                                                  transbox.get(Key)!.time ==
+                                                      _date)
                                               .toList(),
                                           isIncome: true)
-                                      : Today == true
+                                      : Yesterday == true
                                           ? catgorieFetchingInc(
                                               sumOfCatogoriesFromTransBox: transbox
                                                   .keys
                                                   .cast<int>()
                                                   .where((Key) =>
-                                                      transbox.get(Key)!.isIncome == true &&
-                                                      transbox.get(Key)!.time ==
-                                                          _date)
-                                                  .toList(),
-                                              isIncome: true)
-                                          : Yesterday == true
-                                              ? catgorieFetchingInc(
-                                                  sumOfCatogoriesFromTransBox: transbox
-                                                      .keys
-                                                      .cast<int>()
-                                                      .where((Key) =>
-                                                          transbox.get(Key)!.isIncome ==
-                                                              true &&
-                                                          transbox.get(Key)!.time ==
-                                                              _yesterday)
-                                                      .toList(),
-                                                  isIncome: true)
-                                              : Monthly == true
-                                                  ? catgorieFetchingInc(
-                                                      sumOfCatogoriesFromTransBox:
-                                                          transbox.keys
-                                                              .cast<int>()
-                                                              .where((Key) =>
-                                                                  transbox
-                                                                          .get(Key)!
-                                                                          .time
-                                                                          .month ==
-                                                                      month.month &&
-                                                                  transbox.get(Key)!.isIncome == true)
-                                                              .toList(),
-                                                      isIncome: true)
-                                                  : Custom == true
-                                                      ? catgorieFetchingIncCustom()
-                                                      : val(),
-                                  color: Colors.green),
-                            ),
-                          ),
-                        ),
-                        const Expanded(
-                          flex: 1,
-                          child: SizedBox(),
-                        )
-                      ],
-                    )
-                  : Center(
-                      child: Text(
-                        "No Transactions Yet  ",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: constatnt.myColors.black,
-                          fontFamily: 'Poppins',
-                        ),
-                      ),
-                    )
-              : piechartExpense.isNotEmpty
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        const Expanded(child: SizedBox()),
-                        Expanded(
-                          flex: 13,
-                          child: piechart(
-                              val: All == true
-                                  ? catgorieFetchingExp(
-                                      sumOfCatogoriesFromTransBox: transbox.keys
-                                          .cast<int>()
-                                          .where((Key) =>
-                                              transbox.get(Key)!.isIncome == false)
-                                          .toList(),
-                                      isIncome: false)
-                                  : Today == true
-                                      ? catgorieFetchingExp(
-                                          sumOfCatogoriesFromTransBox: transbox.keys
-                                              .cast<int>()
-                                              .where((Key) =>
-                                                  transbox.get(Key)!.isIncome ==
-                                                      false &&
-                                                  transbox.get(Key)!.time == _date)
-                                              .toList(),
-                                          isIncome: false)
-                                      : Yesterday == true
-                                          ? catgorieFetchingExp(
-                                              sumOfCatogoriesFromTransBox: transbox
-                                                  .keys
-                                                  .cast<int>()
-                                                  .where((Key) =>
                                                       transbox.get(Key)!.isIncome ==
-                                                          false &&
+                                                          true &&
                                                       transbox.get(Key)!.time ==
                                                           _yesterday)
                                                   .toList(),
-                                              isIncome: false)
+                                              isIncome: true)
                                           : Monthly == true
-                                              ? catgorieFetchingExp(
+                                              ? catgorieFetchingInc(
                                                   sumOfCatogoriesFromTransBox:
                                                       transbox.keys
                                                           .cast<int>()
@@ -739,32 +662,106 @@ class OverviewController extends GetxController {
                                                                       .time
                                                                       .month ==
                                                                   month.month &&
-                                                              transbox
-                                                                      .get(Key)!
-                                                                      .isIncome ==
-                                                                  false)
+                                                              transbox.get(Key)!.isIncome == true)
                                                           .toList(),
-                                                  isIncome: false)
+                                                  isIncome: true)
                                               : Custom == true
-                                                  ? catgorieFetchingExpCustom()
+                                                  ? catgorieFetchingIncCustom()
                                                   : val(),
-                              color: Colors.red),
-                        ),
-                        const Expanded(child: SizedBox()),
-                      ],
-                    )
-                  : Center(
-                      child: Text(
-                        "No Transactions Yet  ",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: constatnt.myColors.black,
-                          fontFamily: 'Poppins',
+                              color: Colors.green),
                         ),
                       ),
                     ),
-        );
-      
+                    const Expanded(
+                      flex: 1,
+                      child: SizedBox(),
+                    )
+                  ],
+                )
+              : Center(
+                  child: Text(
+                    "No Transactions Yet  ",
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: constatnt.myColors.black,
+                      fontFamily: 'Poppins',
+                    ),
+                  ),
+                )
+          : piechartExpense.isNotEmpty
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Expanded(child: SizedBox()),
+                    Expanded(
+                      flex: 13,
+                      child: piechart(
+                          val: All == true
+                              ? catgorieFetchingExp(
+                                  sumOfCatogoriesFromTransBox: transbox.keys
+                                      .cast<int>()
+                                      .where((Key) =>
+                                          transbox.get(Key)!.isIncome == false)
+                                      .toList(),
+                                  isIncome: false)
+                              : Today == true
+                                  ? catgorieFetchingExp(
+                                      sumOfCatogoriesFromTransBox: transbox.keys
+                                          .cast<int>()
+                                          .where((Key) =>
+                                              transbox.get(Key)!.isIncome ==
+                                                  false &&
+                                              transbox.get(Key)!.time == _date)
+                                          .toList(),
+                                      isIncome: false)
+                                  : Yesterday == true
+                                      ? catgorieFetchingExp(
+                                          sumOfCatogoriesFromTransBox: transbox
+                                              .keys
+                                              .cast<int>()
+                                              .where((Key) =>
+                                                  transbox.get(Key)!.isIncome ==
+                                                      false &&
+                                                  transbox.get(Key)!.time ==
+                                                      _yesterday)
+                                              .toList(),
+                                          isIncome: false)
+                                      : Monthly == true
+                                          ? catgorieFetchingExp(
+                                              sumOfCatogoriesFromTransBox:
+                                                  transbox.keys
+                                                      .cast<int>()
+                                                      .where((Key) =>
+                                                          transbox
+                                                                  .get(Key)!
+                                                                  .time
+                                                                  .month ==
+                                                              month.month &&
+                                                          transbox
+                                                                  .get(Key)!
+                                                                  .isIncome ==
+                                                              false)
+                                                      .toList(),
+                                              isIncome: false)
+                                          : Custom == true
+                                              ? catgorieFetchingExpCustom()
+                                              : val(),
+                          color: Colors.red),
+                    ),
+                    const Expanded(child: SizedBox()),
+                  ],
+                )
+              : Center(
+                  child: Text(
+                    "No Transactions Yet  ",
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: constatnt.myColors.black,
+                      fontFamily: 'Poppins',
+                    ),
+                  ),
+                ),
+    );
   }
 
   String formattedDate1 = DateFormat('MMM-dd').format(_date);
